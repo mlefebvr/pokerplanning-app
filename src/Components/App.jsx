@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import {
+  Alert,
   Container,
   Row,
   Col,
@@ -52,6 +53,10 @@ const App = () => {
     socket.emit('submit-story', submittedStory)
     setStory(submittedStory)
     return true
+  }
+
+  if (!ENDPOINT) {
+    return <Alert variant="danger">Error: you must specify the REACT_APP_ENDPOINT environment variable</Alert>
   }
 
   return !name
